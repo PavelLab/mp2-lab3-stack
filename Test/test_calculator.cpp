@@ -17,7 +17,7 @@ TEST(TCalculator, can_create_copied_calculator)
 TEST(TCalculator, can_set_and_get_string)
 {
 	TCalculator  calc;
-	string expr = "2+2";
+	std::string expr = "2+2";
 	ASSERT_NO_THROW(calc.Setexpr(expr));
 	EXPECT_EQ(calc.GetExpr(),expr);
 }

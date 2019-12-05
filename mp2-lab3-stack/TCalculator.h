@@ -2,11 +2,9 @@
 #include "TStack.h"
 #include <string>
 
-using namespace std;
-
 class TCalculator {
-	string expr;       //выражение
-	string postfix;    //выражение в постфиксной записи
+	std::string expr;       //выражение
+	std::string postfix;    //выражение в постфиксной записи
 	TStack<char> st_c;
 	TStack<double> st_d;
 public:
@@ -14,9 +12,9 @@ public:
 	TCalculator(const TCalculator &a);
 	~TCalculator() {};
 
-	void Setexpr(string s);     //установить строку(выражение)
-	string GetExpr();           //вернуть строку(выражение)
-	string GetPostfix();        //вернуть выражение в постфиксной записи
+	void Setexpr(std::string s);     //установить строку(выражение)
+	std::string GetExpr();           //вернуть строку(выражение)
+	std::string GetPostfix();        //вернуть выражение в постфиксной записи
 	bool check();               //проверка правильности написания скобок в выражении
 	int prior(char c);          //возвращает приоритет операции с
 	void ToPostfix();           //переводит выражение в постфиксную запись
@@ -29,16 +27,16 @@ TCalculator::TCalculator(const TCalculator &a) : st_c(a.st_c), st_d(a.st_d), exp
 }/*-------------------------------------------------------------------------*/
 
 
-void TCalculator::Setexpr(string s){
+void TCalculator::Setexpr(std::string s){
 	expr = s;
 }/*-------------------------------------------------------------------------*/
 
-string TCalculator::GetExpr() {
+std::string TCalculator::GetExpr() {
 	return expr;
 }/*-------------------------------------------------------------------------*/
 
 
-string TCalculator::GetPostfix() {
+std::string TCalculator::GetPostfix() {
 	return postfix;
 }/*-------------------------------------------------------------------------*/
 
@@ -62,7 +60,7 @@ int TCalculator::prior(char c) {
 }/*-------------------------------------------------------------------------*/
 
 void TCalculator::ToPostfix() {
-	string str = "(";
+	std::string str = "(";
 	str += expr;
 	str += ")";
 	st_c.clear();
@@ -113,7 +111,8 @@ double TCalculator::calc() {
 				break;
 			case '*': res = op1 * op2;
 				break;
-			case (':'||'/'): res = op1 / op2;
+			case (':'):
+			case ('/'): res = op1 / op2;
 				break;
 			default:
 				break;
